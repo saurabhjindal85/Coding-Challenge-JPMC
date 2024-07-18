@@ -14,12 +14,20 @@ public class FindWord {
     /**
      *Method return word having the most occurrence of the search Character
      *
+     * example
+     * Statement : To change the font size, right-click a Javadoc in the editor and select Adjust Font Size from the context menu. Note that the rendered comments use the same font size as the quick documentation popup.
+     * character : a
+     * return : Javadoc
+     *
+     *
      * @return
      */
     public String checkForCharacterInStmt(){
         String outputString  = Arrays.stream(this.statement.split(" "))
                 .filter(w -> w.contains(String.valueOf(this.character)))
                 .reduce("", (intermediate, newWord)-> checkForCharacterInStmt(intermediate, newWord));
+        if(outputString == "")
+            outputString = "Search character is not present in Statement.";
         return outputString;
     }
 
