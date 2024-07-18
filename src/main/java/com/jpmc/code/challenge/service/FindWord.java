@@ -12,7 +12,7 @@ public class FindWord {
     }
 
     /**
-     *Method return word having the most occurence of the search Character
+     *Method return word having the most occurrence of the search Character
      *
      * @return
      */
@@ -24,7 +24,7 @@ public class FindWord {
     }
 
     /**
-     *Method responible for checking the occurence of search character in each word
+     *Method responsible for checking the occurrence of search character in each word
      * compare it existing finding and returns the compared result
      *
      * @param intermediate
