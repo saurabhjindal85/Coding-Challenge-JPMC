@@ -14,6 +14,29 @@ import java.util.Scanner;
 public class Driver {
 
     /**
+     * Driver class of the program, run example is as below
+     *
+     * Example
+     *Welcome to the main menu
+     * Please select 1 0r 2 for executing solution
+     * 1. Find the word which contains the most number of the character
+     * 2. Returns the starting position of the longest continuous Seq of 1s in its binary format
+     * 1
+     * Input statment for finding character.
+     * To change the font size, right-click a Javadoc in the editor and select Adjust Font Size from the context menu. Note that the rendered comments use the same font size as the quick documentation popup.
+     *
+     * Input Character to be search for.
+     *
+     * Please enter a character to search for in the statment
+     * Input Character to be search for.
+     * .
+     * menu.
+     * Please choose from the following options.
+     * 1. Start Over
+     * 2. Exit
+     * 2
+     * Thank you for simulation. GoodBye!
+     *
      *
      * @param args
      * @throws Exception
