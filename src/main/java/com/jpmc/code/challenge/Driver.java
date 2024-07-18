@@ -5,48 +5,35 @@ import com.jpmc.code.challenge.service.SeqPosition;
 import com.jpmc.code.challenge.utility.ConsoleOutput;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Driver {
-    public static void main(String[] args) throws  Exception{
 
+    /**
+     *
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws  Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int start_Or_exit = 1;
         while(1 == start_Or_exit){
             int option = numericInput(reader);
-            if(1 == option){
-                ConsoleOutput.printFor1();
-                StringBuilder sb = new StringBuilder();
-                Scanner scanner = new Scanner(System.in);
-                while(scanner.hasNextLine()){
-                    String line = scanner.nextLine();
-                    if(line.isEmpty()){
-                        break;
-                    }
-                    sb.append(line).append("\n");
-                }
-                sb.deleteCharAt(sb.length() -1 );
-                String stmt = sb.toString();
-                ConsoleOutput.printForEnterCharactToSearch();
-                String searchChar = scanner.next();
-                FindWord findWord = new FindWord( stmt, searchChar);
-
+            if (1 == option) {
+                String stmt = acceptAndValidateInputFor1();
+                String searchChar = acceptSearchCharacterFor1();
+                FindWord findWord = new FindWord(stmt, searchChar);
                 String outputString = findWord.checkForCharacterInStmt();
                 System.out.println(outputString);
-
             }
 
             if(2 == option){
-                Scanner scanner = new Scanner(System.in);
-                ConsoleOutput.printFor2();
-                String number = scanner.next();
-                SeqPosition seqPosition = new SeqPosition(Integer.valueOf(number));
+                int userInputNumber = acceptUserInputAndValidateFor2();
+                SeqPosition seqPosition = new SeqPosition(userInputNumber);
                 int output = seqPosition.findSeqPosition();
                 System.out.println(output);
             }
@@ -57,6 +44,88 @@ public class Driver {
 
     }
 
+
+    /**
+     * Accept user input for search the Character
+     * Validate to be a single character and not empty String
+     * Empty Character shows error Message "Please enter a character to search for in the statment"
+     *
+     * @return
+     */
+    public static String acceptSearchCharacterFor1() {
+        Scanner scanner = new Scanner(System.in);
+        ConsoleOutput.printForEnterCharactToSearch();
+        String input = scanner.nextLine();
+        String validateMessage = null;
+        if (StringUtils.isEmpty(input)){
+            validateMessage = "Please enter a character to search for in the statment";
+        }
+        while(StringUtils.isNotEmpty(validateMessage)){
+            ConsoleOutput.printOnConsole(validateMessage);
+            ConsoleOutput.printForEnterCharactToSearch();
+            input = scanner.nextLine();
+            if (StringUtils.isEmpty(input)){
+                validateMessage = "Please enter a character to search for in the statment";
+            }else
+                validateMessage = null;
+        }
+        return input;
+    }
+
+    /**
+     * Accept user input for the statement
+     * Empty statement return Error "Empty statment. Pleaser retry"
+     *
+     *
+     * @return
+     */
+    private static String acceptAndValidateInputFor1(){
+        ConsoleOutput.printFor1();
+        StringBuilder sb = new StringBuilder();
+        Scanner scanner = new Scanner(System.in);
+        while(scanner.hasNextLine()){
+            String line = scanner.nextLine();
+            if(line.isEmpty()){
+                break;
+            }
+            sb.append(line).append("\n");
+        }
+        String validateMessage = null;
+        if(StringUtils.isEmpty(sb.toString())){
+            validateMessage = "Empty statment. Pleaser retry";
+        }
+        while(StringUtils.isNotEmpty(validateMessage)){
+            ConsoleOutput.printOnConsole(validateMessage);
+            ConsoleOutput.printFor1();
+            sb = new StringBuilder();
+            while(scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                if(line.isEmpty()){
+                    break;
+                }
+                sb.append(line).append("\n");
+            }
+            if(StringUtils.isEmpty(sb.toString())){
+                validateMessage = "Please enter a number greater than 0.";
+            }else{
+                validateMessage = null;
+            }
+        }
+        sb.deleteCharAt(sb.length() -1 );
+        return sb.toString();
+    }
+    /**
+     * Takes Reader as input
+     * Reads user input and validate it to be as numeric 1 or 2
+     * if not 1 or 2 user will be asked to input right choice
+     * expect user to choose one of the belwo
+     * ("1. Find the word which contains the most number of the character");
+     * ("2. Returns the starting position of the longest continuous Seq of 1s in its binary format")
+     *
+     * @param reader
+     * @return
+     * @throws Exception
+     */
     public static int numericInput(BufferedReader reader) throws Exception{
         ConsoleOutput.printMain();
 
@@ -71,6 +140,46 @@ public class Driver {
         return Integer.valueOf(option).intValue();
     }
 
+    /**
+     * Method Accept user input number for Option 2
+     * Validate user input
+     * if user input is <= 0 then user will be advised to input value > 0
+     *
+     *
+     * @param
+     * @return
+     * @throws Exception
+     */
+    public static int acceptUserInputAndValidateFor2() {
+        Scanner scanner = new Scanner(System.in);
+        ConsoleOutput.printFor2();
+        String input = scanner.next();
+        Integer num = Integer.valueOf(input);
+        String validateMessage = null;
+        if(num <= 0){
+            validateMessage = "Please enter a number greater than 0.";
+        }
+        while (StringUtils.isNotEmpty(validateMessage)){
+            ConsoleOutput.printOnConsole(validateMessage);
+            ConsoleOutput.printFor2();
+            input = scanner.next();
+            num = Integer.valueOf(input);
+            if(num <= 0){
+                validateMessage = "Please enter a number greater than 0.";
+            }else
+                validateMessage= null;
+        }
+        return Integer.valueOf(input).intValue();
+    }
+
+
+    /**
+     * Takes string input and validate it against accepted value of 1 or 2
+     * if not 1 or return error message "Please choose option between 1 and 2."
+     *
+     * @param option
+     * @return
+     */
     private static String validateInput(String option) {
         String message = null;
         try{
@@ -84,6 +193,16 @@ public class Driver {
         return message;
     }
 
+    /**
+     * Takes Reader as input
+     * Checks for the user input for
+     * ("1. Start Over")
+     * ("2. Exit");
+     *
+     * @param reader
+     * @return
+     * @throws Exception
+     */
     public static int enterStartOverOrExitCommand(BufferedReader reader) throws  Exception {
         ConsoleOutput.printStartOverMenu();
         String option = reader.readLine();

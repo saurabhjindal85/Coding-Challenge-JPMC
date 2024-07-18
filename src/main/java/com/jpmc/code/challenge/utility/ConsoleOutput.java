@@ -23,7 +23,7 @@ public interface ConsoleOutput {
     }
 
     static  void printFor2(){
-        System.out.println("Input  a number.");
+        System.out.println("Input a number greater than 0.");
     }
 
 
