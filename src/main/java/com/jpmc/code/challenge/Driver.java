@@ -30,7 +30,21 @@ public class Driver {
      * Please enter a character to search for in the statment
      * Input Character to be search for.
      * .
-     * menu.
+`     * Word found is : menu.
+     *
+     * Welcome to the main menu
+     * Please select 1 0r 2 for executing solution
+     * 1. Find the word which contains the most number of the character
+     * 2. Returns the starting position of the longest continuous Seq of 1s in its binary format
+     * 2
+     * Input a number greater than 0.
+     * 0
+     * Please enter a number greater than 0.
+     * Input a number greater than 0.
+     * 88
+     * Starting position is: 3
+     *
+     *
      * Please choose from the following options.
      * 1. Start Over
      * 2. Exit
@@ -51,14 +65,14 @@ public class Driver {
                 String searchChar = acceptSearchCharacterFor1();
                 FindWord findWord = new FindWord(stmt, searchChar);
                 String outputString = findWord.checkForCharacterInStmt();
-                System.out.println(outputString);
+                System.out.println("Word found is : "+outputString);
             }
 
             if(2 == option){
                 int userInputNumber = acceptUserInputAndValidateFor2();
                 SeqPosition seqPosition = new SeqPosition(userInputNumber);
                 int output = seqPosition.findSeqPosition();
-                System.out.println(output);
+                System.out.println("Starting position is: " +output);
             }
             start_Or_exit = enterStartOverOrExitCommand(reader);
         }
