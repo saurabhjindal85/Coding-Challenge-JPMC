@@ -10,8 +10,8 @@ Run the build jar file with the packaged jar
 java -jar code-challenge-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-####Example of the Simulation.
-#Case 1
+**Example of the Simulation.**<br>
+**Case 1**<br>
 Welcome to the main menu
 Please select 1 0r 2 for executing solution
 1. Find the word which contains the most number of the character
@@ -26,14 +26,14 @@ To change the font size, right-click a Javadoc in the editor and select Adjust F
 Input Character to be search for.<br>
 a
 
-#####Word found is : Javadoc
+**Word found is : Javadoc**<br>
 
-#Case Start Over or Exit
+**Case Start Over or Exit**<br>
 Please choose from the following options.
 1. Start Over
 2. Exit
 
-#Case 2
+**Case 2**<br>
 Welcome to the main menu
 Please select 1 0r 2 for executing solution
 1. Find the word which contains the most number of the character
@@ -42,9 +42,9 @@ Please select 1 0r 2 for executing solution
 2<br>
 Input a number greater than 0.<br>
 0<br>
-#####Please enter a number greater than 0.<br>
+**Please enter a number greater than 0.**<br>
 
 Input a number greater than 0.<br>
 88<br>
-#####Starting position is: 3<br>
+**Starting position is: 3**<br>
 
